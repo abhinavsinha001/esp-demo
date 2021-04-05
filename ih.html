@@ -9,13 +9,13 @@
       // Move this function inside IH / Prebid 
       function fetchAsyncSignals() {
       	class Signals {
- 					 constructor(signal) {
-    				this.signal_string = signal;
-  				 }
-  				 encrypt() {
-    				return btoa(this.signal_string)
-  				}
-				}
+	 constructor(signal) {
+	 	this.signal_string = signal;
+  	 }
+	 encrypt() {
+    		return btoa(this.signal_string)
+	 }
+       }
         let signals= new Signals(JSON.stringify(owpbjs.getUserIdsAsEids()))
       	var promise = Promise.resolve(signals); 
         return promise;
@@ -124,8 +124,8 @@
             googletag.cmd.push(function() {
                 googletag.pubads().disableInitialLoad();
                 googletag.encryptedSignalSource=googletag.encryptedSignalSource|| {};
-                googletag.encryptedSignalSource['identity-hub/prebid'] =()=>{
-    							return fetchAsyncSignals().then((signals)=>signals.encrypt());
+                googletag.encryptedSignalSource['pubmatic'] =()=>{
+		return fetchAsyncSignals().then((signals)=>signals.encrypt());
 								};
             });
             
