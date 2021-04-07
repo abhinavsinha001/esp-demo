@@ -53,6 +53,7 @@
             googletag.cmd = googletag.cmd || [];
             googletag.cmd.push(function() {
                 googletag.pubads().disableInitialLoad();
+		// ESP GPT API changes
                 googletag.encryptedSignalSource=googletag.encryptedSignalSource|| {};
                 googletag.encryptedSignalSource['pubmatic'] =()=>{
 		var mode=1 // 1= eids from Prebid , 2= eids from Identity Hub
@@ -114,7 +115,7 @@
     </head>
 
     <body>
-        <h2>Basic Prebid.js Example</h2>
+        <h2>Basic Prebid.js Example with ESP</h2>
         <h5>Div-1</h5>
         <div id='div-1'>
             <script type='text/javascript'>
