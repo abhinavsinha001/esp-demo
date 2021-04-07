@@ -3,9 +3,9 @@
     <title>Demo ESP</title>
     <head>
       <link rel="icon" type="image/png" href="/favicon.png">
-      <!-- EPS Script begins here -->
       <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
-      <script async src = "https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/eps/eps0.0.1.js" data-encrypted-signal-source-id="pubmatic"></script>
+      <!-- ESP Script -->
+      <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/esp/esp0.0.1.js"  data-encrypted-signal-source-id="pubmatic"></script>
       <script type="text/javascript">        
             var div_1_sizes = [
                 [300, 250],
@@ -19,9 +19,9 @@
             var googletag = googletag || {};
             googletag.cmd = googletag.cmd || [];
             googletag.cmd.push(function() {
-                    googletag.encryptedSignalSource={};
+                googletag.encryptedSignalSource={};
                 googletag.encryptedSignalSource["pubmatic"] =()=>{
-                                    return fetchAsyncSignals().then((signals) => signals.encrypt());
+                return fetchAsyncSignals().then((signals) => signals.encrypt());
                 };
             });
 
