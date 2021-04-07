@@ -113,8 +113,8 @@
                 googletag.pubads().disableInitialLoad();
                 googletag.encryptedSignalSource=googletag.encryptedSignalSource|| {};
                 googletag.encryptedSignalSource['pubmatic'] =()=>{
-		var mode=1 // 1= eids from Prebid , 2= eids from Identity Hub
-		return fetchAsyncSignals(2).then((signals)=>signals.encrypt());
+		var mode=2 // 1= eids from Prebid , 2= eids from Identity Hub
+		return fetchAsyncSignals(mode).then((signals)=>signals.encrypt());
 								};
             });
             
