@@ -2,24 +2,12 @@
     <title>Identity Hub with ESP</title>
     <head>
       <link rel="icon" type="image/png" href="/favicon.png">
-      <!-- Identity Hub Script begins here -->
-      <script async src = "https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/prebid/prebid4.30.0.js" data-encrypted-signal-source-id="pubmatic"></script>
+      <!-- Prebid Script begins here -->
+
+      <script src = "https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/prebid/prebid4.30.0.js"></script>
+	 <!-- ESP Script -->
+      <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/esp/esp0.0.1.js"  data-encrypted-signal-source-id="pubmatic"></script>
       <script type="text/javascript">
-      var owpbjs = owpbjs || {};
-      // Move this function inside IH / Prebid 
-      function fetchAsyncSignals() {
-      	class Signals {
-	 constructor(signal) {
-	 	this.signal_string = signal;
-  	 }
-	 encrypt() {
-    		return btoa(this.signal_string)
-	 }
-       }
-        let signals= new Signals(JSON.stringify(owpbjs.getUserIdsAsEids()))
-      	var promise = Promise.resolve(signals); 
-        return promise;
-      };
       var PWT={}; //Initialize Namespace
       var pbjs = pbjs || {};
       pbjs.que = pbjs.que || [];
@@ -125,7 +113,8 @@
                 googletag.pubads().disableInitialLoad();
                 googletag.encryptedSignalSource=googletag.encryptedSignalSource|| {};
                 googletag.encryptedSignalSource['pubmatic'] =()=>{
-		return fetchAsyncSignals().then((signals)=>signals.encrypt());
+		var mode=1 // 1= eids from Prebid , 2= eids from Identity Hub
+		return fetchAsyncSignals(1).then((signals)=>signals.encrypt());
 								};
             });
             
