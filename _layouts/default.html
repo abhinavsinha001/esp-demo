@@ -20,7 +20,7 @@
             googletag.cmd = googletag.cmd || [];
             googletag.cmd.push(function() {
                 googletag.encryptedSignalSource={};
-                googletag.encryptedSignalSource["pubmatic"] =()=>{
+                googletag.encryptedSignalSource["pubmatic"] = function(){
                 return fetchAsyncSignals().then((signals) => signals.encrypt());
                 };
             });
