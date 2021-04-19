@@ -22,7 +22,7 @@
             var googletag = googletag || {};
             googletag.cmd = googletag.cmd || [];
             googletag.cmd.push(function() {
-                googletag.encryptedSignalSource={};
+                googletag.encryptedSignalSource=googletag.encryptedSignalSource|| {};
                 googletag.encryptedSignalSource["pubmatic"] = function(){
                 fetchAsyncSignals().then((signals)=> signals.encrypt());
                 };
