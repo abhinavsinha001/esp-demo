@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    <title>Demo ESP</title>
-      <link rel="icon" type="image/png" href="/favicon.png">
 
+<html>
+    <title>Demo ESP</title>
+    <head>
+      <link rel="icon" type="image/png" href="/favicon.png">
       <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
       <!-- ESP Script -->
       <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/esp/eids-esp.js"  data-encrypted-signal-source-id="pubmatic"></script>
-     
       <script type="text/javascript">        
             var div_1_sizes = [
                 [300, 250],
@@ -21,9 +19,9 @@
             var googletag = googletag || {};
             googletag.cmd = googletag.cmd || [];
             googletag.cmd.push(function() {
-                googletag.encryptedSignalSource=googletag.encryptedSignalSource|| {};
-                googletag.encryptedSignalSource["pubmatic"] = () =>{
-                fetchAsyncSignals().then((signals)=> signals.encrypt());
+                googletag.encryptedSignalSource={};
+                googletag.encryptedSignalSource["pubmatic"] =()=>{
+                return fetchAsyncSignals().then((signals) => signals.encrypt());
                 };
             });
 
@@ -39,7 +37,9 @@
             });
 
         </script>
+
     </head>
+
     <body>
         <h2>Demo ESP</h2>
         <h5>Div-1</h5>
