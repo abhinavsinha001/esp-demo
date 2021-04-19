@@ -6,7 +6,7 @@
 
       <script src = "https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/prebid/prebid4.30.0.js"></script>
 	 <!-- ESP Script -->
-      <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/esp/eids-esp.js"  data-encrypted-signal-source-id="pubmatic"></script>
+      <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/esp/eids-esp-1.0-ie.js"  data-encrypted-signal-source-id="pubmatic"></script>
       <script type="text/javascript">
 	      // Handling for Promise in IE
 	      (function() {
@@ -121,15 +121,15 @@
             // ======== DO NOT EDIT BELOW THIS LINE =========== //
             var googletag = googletag || {};
             googletag.cmd = googletag.cmd || [];
-             googletag.cmd.push(function() {
-                googletag.encryptedSignalSource={};
-                googletag.encryptedSignalSource["pubmatic"] = function(){
-		var mode=2 // 1= eids from Prebid , 2= eids from Identity Hub
-                fetchAsyncSignals(mode).then(function (signals) {
-                    return signals.encrypt();
-                 });
-                };
-            });
+            googletag.cmd.push(function () {
+		  googletag.encryptedSignalSource = {};
+		  var mode = 2; // 1= eids from Prebid , 2= eids from Identity Hub
+		  googletag.encryptedSignalSource["pubmatic"] = function () {
+		    return fetchAsyncSignals(mode).then(function (signals) {
+		      return signals.encrypt();
+		    });
+		  };
+		});
             
 
             var pbjs = pbjs || {};
