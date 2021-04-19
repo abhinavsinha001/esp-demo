@@ -8,16 +8,17 @@
 	 <!-- ESP Script -->
       <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/esp/eids-esp.js"  data-encrypted-signal-source-id="pubmatic"></script>
       <script type="text/javascript">
-      // Handling for Promise in IE
-      (function() {
-         if (typeof Promise !== "function"){
-            var es6 = document.createElement('script');
-            es6.type = 'text/javascript';
-            es6.src = 'https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js';
-            var node = document.getElementsByTagName('script')[0];
-            node.parentNode.insertBefore(es6, node);
-        }
-      })();
+	      // Handling for Promise in IE
+	      (function() {
+		 if (typeof Promise !== "function"){
+		    var es6 = document.createElement('script');
+		    es6.type = 'text/javascript';
+		    es6.src = 'https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js';
+		    var node = document.getElementsByTagName('script')[0];
+		    node.parentNode.insertBefore(es6, node);
+		}
+	      })();
+      </script>
       <script type="text/javascript">
       var PWT={}; //Initialize Namespace
       var pbjs = pbjs || {};
@@ -123,7 +124,8 @@
              googletag.cmd.push(function() {
                 googletag.encryptedSignalSource={};
                 googletag.encryptedSignalSource["pubmatic"] = function(){
-                fetchAsyncSignals().then(function (signals) {
+		var mode=2 // 1= eids from Prebid , 2= eids from Identity Hub
+                fetchAsyncSignals(mode).then(function (signals) {
                     return signals.encrypt();
                  });
                 };
