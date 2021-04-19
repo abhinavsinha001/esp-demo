@@ -1,5 +1,4 @@
 <html>
-
     <head>
         <link rel="icon" type="image/png" href="/favicon.png">
         <script async src="//www.googletagservices.com/tag/js/gpt.js"></script>
@@ -65,13 +64,20 @@
             var googletag = googletag || {};
             googletag.cmd = googletag.cmd || [];
         	
-	     googletag.cmd.push(function() {
+// 	     googletag.cmd.push(function() {
+//                 googletag.encryptedSignalSource={};
+//                 googletag.encryptedSignalSource["pubmatic"] = function(){
+// 		var mode=1 // 1= eids from Prebid , 2= eids from Identity Hub
+//                 fetchAsyncSignals(mode).then(function (signals) {
+//                     return signals.encrypt();
+//                  });
+//                 };
+//             });
+		googletag.cmd.push(function() {
                 googletag.encryptedSignalSource={};
-                googletag.encryptedSignalSource["pubmatic"] = function(){
 		var mode=1 // 1= eids from Prebid , 2= eids from Identity Hub
-                fetchAsyncSignals(mode).then(function (signals) {
-                    return signals.encrypt();
-                 });
+                googletag.encryptedSignalSource["pubmatic"] =()=>{
+                return fetchAsyncSignals().then((signals) => signals.encrypt());
                 };
             });
 
