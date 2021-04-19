@@ -4,7 +4,20 @@
         <link rel="icon" type="image/png" href="/favicon.png">
         <script async src="//www.googletagservices.com/tag/js/gpt.js"></script>
         <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/prebid/prebid4.30.0.js"></script>
+	    
         <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/esp/eids-esp.js"  data-encrypted-signal-source-id="pubmatic"></script>
+	<script type="text/javascript">
+	      // Handling for Promise in IE
+	      (function() {
+		 if (typeof Promise !== "function"){
+		    var es6 = document.createElement('script');
+		    es6.type = 'text/javascript';
+		    es6.src = 'https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js';
+		    var node = document.getElementsByTagName('script')[0];
+		    node.parentNode.insertBefore(es6, node);
+		}
+	      })();
+      </script>
         <script>
             var div_1_sizes = [
                 [300, 250],
@@ -51,14 +64,15 @@
             // ======== DO NOT EDIT BELOW THIS LINE =========== //
             var googletag = googletag || {};
             googletag.cmd = googletag.cmd || [];
-            googletag.cmd.push(function() {
-                googletag.pubads().disableInitialLoad();
-		// ESP GPT API changes
-                googletag.encryptedSignalSource=googletag.encryptedSignalSource|| {};
-                googletag.encryptedSignalSource['pubmatic'] =()=>{
+        	
+	     googletag.cmd.push(function() {
+                googletag.encryptedSignalSource={};
+                googletag.encryptedSignalSource["pubmatic"] = function(){
 		var mode=1 // 1= eids from Prebid , 2= eids from Identity Hub
-		return fetchAsyncSignals(mode).then((signals)=>signals.encrypt());						
-		};
+                fetchAsyncSignals(mode).then(function (signals) {
+                    return signals.encrypt();
+                 });
+                };
             });
 
             var pbjs = pbjs || {};
