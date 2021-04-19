@@ -8,6 +8,17 @@
 	 <!-- ESP Script -->
       <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/esp/eids-esp.js"  data-encrypted-signal-source-id="pubmatic"></script>
       <script type="text/javascript">
+      // Handling for Promise in IE
+      (function() {
+         if (typeof Promise !== "function"){
+            var es6 = document.createElement('script');
+            es6.type = 'text/javascript';
+            es6.src = 'https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js';
+            var node = document.getElementsByTagName('script')[0];
+            node.parentNode.insertBefore(es6, node);
+        }
+      })();
+      <script type="text/javascript">
       var PWT={}; //Initialize Namespace
       var pbjs = pbjs || {};
       pbjs.que = pbjs.que || [];
@@ -109,13 +120,13 @@
             // ======== DO NOT EDIT BELOW THIS LINE =========== //
             var googletag = googletag || {};
             googletag.cmd = googletag.cmd || [];
-            googletag.cmd.push(function() {
-                googletag.pubads().disableInitialLoad();
-                googletag.encryptedSignalSource=googletag.encryptedSignalSource|| {};
-                googletag.encryptedSignalSource['pubmatic'] =()=>{
-		var mode=2 // 1= eids from Prebid , 2= eids from Identity Hub
-		return fetchAsyncSignals(mode).then((signals)=>signals.encrypt());
-								};
+             googletag.cmd.push(function() {
+                googletag.encryptedSignalSource={};
+                googletag.encryptedSignalSource["pubmatic"] = function(){
+                fetchAsyncSignals().then(function (signals) {
+                    return signals.encrypt();
+                 });
+                };
             });
             
 
