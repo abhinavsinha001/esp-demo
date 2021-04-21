@@ -116,7 +116,8 @@
             var googletag = googletag || {};
             googletag.cmd = googletag.cmd || [];
             googletag.cmd.push(function () {
-		  googletag.encryptedSignalSource = {};
+		  // ESP: register signal function with googletag.
+		  googletag.encryptedSignalSource = googletag.encryptedSignalSource || {};
 		  var mode = 2; // 1= eids from Prebid , 2= eids from Identity Hub
 		  googletag.encryptedSignalSource["pubmatic"] = function () {
 		    return fetchAsyncSignals(mode).then(function (signals) {
