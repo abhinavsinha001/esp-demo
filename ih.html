@@ -5,20 +5,14 @@
       <!-- Prebid Script begins here -->
 
       <script src = "https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/prebid/prebid4.30.0.js"></script>
-	 <!-- ESP Script -->
-      <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/esp/eids-esp-1.0-ie.js"  data-encrypted-signal-source-id="pubmatic"></script>
-      <script type="text/javascript">
-	      // Handling for Promise in IE
-	      (function() {
-		 if (typeof Promise !== "function"){
-		    var es6 = document.createElement('script');
-		    es6.type = 'text/javascript';
-		    es6.src = 'https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js';
-		    var node = document.getElementsByTagName('script')[0];
-		    node.parentNode.insertBefore(es6, node);
-		}
-	      })();
-      </script>
+      <!-- Start IE Compatibility Script for ESP (Promise) -->
+      <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script> 
+      <!-- End IE Compatibility Script for ESP (Promise) -->
+      
+      <!-- ESP Script -->
+      <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/esp/eids-esp-1.0.min.js"  data-encrypted-signal-source-id="pubmatic"></script>
+  
       <script type="text/javascript">
       var PWT={}; //Initialize Namespace
       var pbjs = pbjs || {};
