@@ -147,8 +147,17 @@
          
                 googletag.cmd.push(function() {
                 		
-                    pbjs.que.push(function() {
-                    
+                    pbjs.que.push(function() {    
+			   googletag.cmd.push(function () {
+			   // ESP: register signal function with googletag.
+				googletag.encryptedSignalSource = googletag.encryptedSignalSource || {};
+				  var mode = 2; // 1= eids from Prebid , 2= eids from Identity Hub
+				  googletag.encryptedSignalSource["pubmatic"] = function () {
+				    return fetchAsyncSignals(mode).then(function (signals) {
+					    return signals;
+					});
+				  };
+			    });
                         pbjs.setTargetingForGPTAsync();
                         googletag.pubads().refresh();
                     });
@@ -170,17 +179,7 @@
                 googletag.pubads().enableSingleRequest();
                 googletag.enableServices();
             });
-	   googletag.cmd.push(function () {
-		  // ESP: register signal function with googletag.
-		  googletag.encryptedSignalSource = googletag.encryptedSignalSource || {};
-		  var mode = 2; // 1= eids from Prebid , 2= eids from Identity Hub
-		  googletag.encryptedSignalSource["pubmatic"] = function () {
-		    return fetchAsyncSignals(mode).then(function (signals) {
-		            return signals;
-		        });
-		  };
-	    });
-
+	
         </script>
 
     </head>
