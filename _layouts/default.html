@@ -9,9 +9,14 @@
 		 if (typeof Promise !== "function"){
 		    var es6 = document.createElement('script');
 		    es6.type = 'text/javascript';
-		    es6.src = 'https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js';
+		    es6.src = 'https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js';
+		    var node = document.getElementsByTagName('script')[0];
+		    var es6auto = document.createElement('script');
+		    es6auto.type = 'text/javascript';
+		    es6auto.src = 'https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js';
 		    var node = document.getElementsByTagName('script')[0];
 		    node.parentNode.insertBefore(es6, node);
+		    node.parentNode.insertBefore(es6auto, node);
 		}
 	      })();
       </script>
