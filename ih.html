@@ -129,17 +129,6 @@
             // ======== DO NOT EDIT BELOW THIS LINE =========== //
             var googletag = googletag || {};
             googletag.cmd = googletag.cmd || [];
-            googletag.cmd.push(function () {
-		  // ESP: register signal function with googletag.
-		  googletag.encryptedSignalSource = googletag.encryptedSignalSource || {};
-		  var mode = 2; // 1= eids from Prebid , 2= eids from Identity Hub
-		  googletag.encryptedSignalSource["pubmatic"] = function () {
-		    return fetchAsyncSignals(mode).then(function (signals) {
-		            return signals;
-		        });
-		  };
-	    });
-
             var pbjs = pbjs || {};
             pbjs.que = pbjs.que || [];
 
@@ -150,6 +139,17 @@
                     timeout: PREBID_TIMEOUT
                 });
             });
+		
+	    googletag.cmd.push(function () {
+		  // ESP: register signal function with googletag.
+		  googletag.encryptedSignalSource = googletag.encryptedSignalSource || {};
+		  var mode = 2; // 1= eids from Prebid , 2= eids from Identity Hub
+		  googletag.encryptedSignalSource["pubmatic"] = function () {
+		    return fetchAsyncSignals(mode).then(function (signals) {
+		            return signals;
+		        });
+		  };
+	    });
 
             function initAdserver() {
                 if (pbjs.initAdserverSet) return;
