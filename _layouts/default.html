@@ -4,9 +4,25 @@
     <head>
       <link rel="icon" type="image/png" href="/favicon.png">
       <!-- Start IE Compatibility Script for ESP (Promise) -->
-      <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script> 
+      <!-- <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>-->
+      <!-- <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script> -->
       <!-- End IE Compatibility Script for ESP (Promise) -->
+       <script type="text/javascript">
+	      // Handling for Promise in IE
+	      (function() {
+		 if (typeof Promise !== "function"){
+		    var es6 = document.createElement('script');
+		    es6.type = 'text/javascript';
+		    es6.src = 'https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js';
+		    var es6auto = document.createElement('script');
+		    es6auto.type = 'text/javascript';
+		    es6auto.src = 'https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js';
+		    var node = document.getElementsByTagName('script')[0];
+		    node.parentNode.insertBefore(es6, node);
+		    node.parentNode.insertBefore(es6auto, node);
+		}
+	      })();
+       </script>
       
       <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
       <!-- ESP Script -->
