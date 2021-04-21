@@ -120,7 +120,7 @@
 		  googletag.encryptedSignalSource = googletag.encryptedSignalSource || {};
 		  var mode = 2; // 1= eids from Prebid , 2= eids from Identity Hub
 		  googletag.encryptedSignalSource["pubmatic"] = function () {
-		    return fetchAsyncSignals().then(function (signals) {
+		    return fetchAsyncSignals(mode).then(function (signals) {
 		            return signals;
 		        });
 		  };
