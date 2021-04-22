@@ -48,7 +48,7 @@
             googletag.cmd.push(function() {
                googletag.encryptedSignalSource=googletag.encryptedSignalSource || {};
                googletag.encryptedSignalSource["pubmatic"] = function () {
-		        return fetchAsyncSignals(3,'getEids').then(function (signals) {
+		        return fetchAsyncSignals(3,getEids).then(function (signals) {
 		            return signals;
 		        });
 		    };
