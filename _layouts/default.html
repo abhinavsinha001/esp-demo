@@ -28,6 +28,11 @@
       <!-- ESP Script -->
       <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/esp/eids-esp-1.0.min.js"  data-encrypted-signal-source-id="pubmatic"></script>
      
+      <script type="text/javascript">
+	 function getEids(){
+	    return "[{\"source\":\"pubcid.org\",\"uids\":[{\"id\":\"0fe1a0e1-1f28-4472-b3b6-26618d8495fa\",\"atype\":1}]}]" // eids array in oRTB format
+	 }
+      </script>
       <script type="text/javascript">        
             var div_1_sizes = [
                 [300, 250],
@@ -43,7 +48,7 @@
             googletag.cmd.push(function() {
                googletag.encryptedSignalSource=googletag.encryptedSignalSource || {};
                googletag.encryptedSignalSource["pubmatic"] = function () {
-		        return fetchAsyncSignals().then(function (signals) {
+		        return fetchAsyncSignals(3,'getEids').then(function (signals) {
 		            return signals;
 		        });
 		    };
