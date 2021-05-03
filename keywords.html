@@ -45,12 +45,11 @@
         var googletag = googletag || {};
         googletag.cmd = googletag.cmd || [];
         googletag.cmd.push(function() {
-            googletag.encryptedSignalSource = googletag.encryptedSignalSource || {};
-            googletag.encryptedSignalSource["pubmatic"] = function() {
-                return fetchAsyncSignals(3, getKeywords,'keywords').then(function(signals) {
-                    return signals;
-                });
-            };
+            googletag.encryptedSignalProviders=googletag.encryptedSignalProviders || [];
+            googletag.encryptedSignalProviders.push({
+                id: 'pubmatic',
+                collectorFunction: fetchAsyncSignals(mode)
+            });
         });
 
         googletag.cmd.push(function() {
