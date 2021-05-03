@@ -40,6 +40,7 @@
 
             var googletag = googletag || {};
             googletag.cmd = googletag.cmd || [];
+	    var googletag.encryptedSignalProviders=googletag.encryptedSignalProviders|| [];
             googletag.cmd.push(function() {
 		    googletag.encryptedSignalProviders.push({
 		    id: 'pubmatic',
