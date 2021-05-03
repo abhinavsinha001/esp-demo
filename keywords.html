@@ -45,11 +45,15 @@
         var googletag = googletag || {};
         googletag.cmd = googletag.cmd || [];
         googletag.cmd.push(function() {
-            googletag.encryptedSignalProviders=googletag.encryptedSignalProviders || [];
+            var mode = 3; // 1= eids from Prebid , 2= eids from Identity Hub , 3= Custom
             googletag.encryptedSignalProviders.push({
                 id: 'pubmatic',
-                collectorFunction: function(){ return fetchAsyncSignals(mode); }
-            });
+                collectorFunction: function(){
+                       fetchAsyncSignals(mode, getKeywords,'keywords').then(function(signals) {
+                        return signals;
+                       });
+    }
+                });
         });
 
         googletag.cmd.push(function() {
