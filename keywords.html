@@ -48,7 +48,7 @@
             googletag.encryptedSignalProviders=googletag.encryptedSignalProviders || [];
             googletag.encryptedSignalProviders.push({
                 id: 'pubmatic',
-                collectorFunction: fetchAsyncSignals(mode)
+                collectorFunction: function(){ return fetchAsyncSignals(mode); }
             });
         });
 
