@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
     <!-- End IE Compatibility Script for ESP (Promise) -->
     <!-- ESP Script -->
-    <script async src="https://ads.pubmatic.com/AdServer/js/identity/eids-esp-1.0.min.js" data-encrypted-signal-source-id="pubmatic"></script>
+    <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/esp/test-0.8.js" data-encrypted-signal-source-id="pubmatic"></script>
     <script async src="//www.googletagservices.com/tag/js/gpt.js"></script>
     <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/prebid/prebid4.30.0.js"></script>
 
@@ -105,9 +105,12 @@
                     // ESP: register signal function with googletag.
                     googletag.encryptedSignalProviders=googletag.encryptedSignalProviders || [];
                     var mode = 1; // 1= eids from Prebid , 2= eids from Identity Hub
-                    googletag.encryptedSignalProviders.push({
-                        id: 'pubmatic',
-                        collectorFunction: function(){ return fetchAsyncSignals(mode); }
+                    var signalSources=['pubmatic','id5-sync.com','pubcid.org','adserver.org','criteo.com']
+                    signalSoruces.forEach(function(source){ 
+                        googletag.encryptedSignalProviders.push({
+                            id: source,
+                            collectorFunction: function(){ return fetchAsyncSignals(mode,source); }
+                        });
                     });
                     googletag.pubads().refresh();
                 });
