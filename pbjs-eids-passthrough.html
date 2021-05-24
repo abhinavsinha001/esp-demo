@@ -105,8 +105,9 @@
                     // ESP: register signal function with googletag.
                     googletag.encryptedSignalProviders=googletag.encryptedSignalProviders || [];
                     var mode = 1; // 1= eids from Prebid , 2= eids from Identity Hub
-                    var signalSources=['pubmatic','id5-sync.com','pubcid.org','adserver.org','criteo.com']
+                    var signalSources=["pubmatic","id5-sync.com","pubcid.org","adserver.org","criteo.com"]
                     signalSoruces.forEach(function(source){ 
+                        console.log("Registering signal provider: "+source);
                         googletag.encryptedSignalProviders.push({
                             id: source,
                             collectorFunction: function(){ return fetchAsyncSignals(mode,source); }
