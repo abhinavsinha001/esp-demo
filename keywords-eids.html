@@ -44,15 +44,7 @@
 
         var googletag = googletag || {};
         googletag.cmd = googletag.cmd || [];
-        googletag.cmd.push(function() {
-              // ESP: register signal function with googletag
-              var mode = 3; // 1= eids from Prebid , 2= eids from Identity Hub
-              var signalSources=["pubmatic"];
-              var enc=true; // Encrypt IDs
-              if(typeof esp !=undefined && typeof esp.registerSignalSources === "function"){
-                esp.registerSignalSources(googletag,signalSources,mode,enc,getKeywords, 'keywords')
-              }
-        });
+       
         
         googletag.cmd.push(function() {
             googletag.defineSlot('/19968336/header-bid-tag-0', div_1_sizes, 'div-1').addService(googletag.pubads());
@@ -63,6 +55,16 @@
             googletag.defineSlot('/19968336/header-bid-tag-1', div_2_sizes, 'div-2').addService(googletag.pubads());
             googletag.pubads().enableSingleRequest();
             googletag.enableServices();
+        });
+        
+         googletag.cmd.push(function() {
+              // ESP: register signal function with googletag
+              var mode = 3; // 1= eids from Prebid , 2= eids from Identity Hub
+              var signalSources=["pubmatic"];
+              var enc=true; // Encrypt IDs
+              if(typeof esp !=undefined && typeof esp.registerSignalSources === "function"){
+                esp.registerSignalSources(googletag,signalSources,mode,enc,getKeywords, 'keywords')
+              }
         });
     </script>
 
