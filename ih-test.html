@@ -160,7 +160,7 @@
                     var signalSources=["pubmatic","id5-sync.com","pubcid.org","adserver.org","criteo.com"];
                     var enc=false; // Encrypt IDs
                     if(typeof esp !=undefined && typeof esp.registerSignalSources === "function"){
-                      esp.registerSignalSources(signalSources,mode,enc)
+                      esp.registerSignalSources(googletag,signalSources,mode,enc)
                     }
                     googletag.pubads().refresh();
                 });
