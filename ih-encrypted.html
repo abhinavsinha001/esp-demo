@@ -158,7 +158,7 @@
                     // ESP: register signal function with googletag
                     var mode = 2; // 1= eids from Prebid , 2= eids from Identity Hub
                     var signalSources=["pubmatic","id5-sync.com","pubcid.org","adserver.org","criteo.com"];
-                    var enc=false; // Encrypt IDs
+                    var enc=true; // Encrypt IDs
                     if(typeof esp !=undefined && typeof esp.registerSignalSources === "function"){
                       esp.registerSignalSources(googletag,signalSources,mode,enc)
                     }
