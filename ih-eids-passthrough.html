@@ -23,7 +23,7 @@
     <!-- End IE Compatibility Script for ESP (Promise) -->
 
     <!-- ESP Script -->
-    <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/esp/test-0.8.js" data-encrypted-signal-source-id="pubmatic"></script>
+    <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/esp/test-0.18.js" data-encrypted-signal-source-id="pubmatic"></script>
 
     <!-- Identity Hub Script begins here -->
 
@@ -155,17 +155,13 @@
             googletag.cmd.push(function() {
                 pbjs.que.push(function() {
                     pbjs.setTargetingForGPTAsync();
-                    // ESP: register signal function with googletag.
-                   googletag.encryptedSignalProviders=googletag.encryptedSignalProviders || [];
-                   var mode = 2; // 1= eids from Prebid , 2= eids from Identity Hub
-                   var signalSources=["pubmatic","id5-sync.com","pubcid.org","adserver.org","criteo.com"]
-                    signalSources.forEach(function(source){ 
-                        console.log("Registering signal provider: "+source);
-                        googletag.encryptedSignalProviders.push({
-                            id: source,
-                            collectorFunction: function(){ return fetchAsyncSignals(mode,source); }
-                        });
-                    });
+                    // ESP: register signal function with googletag
+                    var mode = 2; // 1= eids from Prebid , 2= eids from Identity Hub
+                    var signalSources=["pubmatic","id5-sync.com","pubcid.org","adserver.org","criteo.com"];
+                    var enc=false; // Encrypt IDs
+                    if(typeof esp !=undefined && typeof esp.registerSignalSources === "function"){
+                      esp.registerSignalSources(googletag,signalSources,mode,enc)
+                    }
                     googletag.pubads().refresh();
                 });
             });
@@ -191,7 +187,7 @@
 </head>
 
 <body>
-    <h2>Identity Hub with ESP</h2>
+    <h2>Identity Hub with ESP eids Passthrough</h2>
     <h5>Div-1</h5>
     <div id='div-1'>
         <script type='text/javascript'>
