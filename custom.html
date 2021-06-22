@@ -24,7 +24,7 @@
 
     <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
     <!-- ESP Script -->
-    <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/esp/eids-esp-2.0.min.js" data-encrypted-signal-source-id="pubmatic"></script>
+    <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/esp/test-0.23.js" data-encrypted-signal-source-id="pubmatic"></script>
 
     <script type="text/javascript">
         //Custom Signal Function
@@ -45,12 +45,12 @@
         var googletag = googletag || {};
         googletag.cmd = googletag.cmd || [];
         googletag.cmd.push(function() {
-            googletag.encryptedSignalSource = googletag.encryptedSignalSource || {};
-            googletag.encryptedSignalSource["pubmatic"] = function() {
-                return fetchAsyncSignals(3, getEids).then(function(signals) {
-                    return signals;
-                });
-            };
+            googletag.encryptedSignalProviders = [];
+            var signalSources = ["pubcid.org", "criteo.com"]; // Select the signal sources you want to pass
+            var encrypt = false;
+
+            var mode = 3; // Mode 1=Prebid , 2=Identity Hub 3=Custom eids function
+            esp.registerSignalSources(googletag, signalSources, mode, encrypt, getEids);
         });
 
         googletag.cmd.push(function() {
