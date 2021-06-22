@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
     <!-- End IE Compatibility Script for ESP (Promise) -->
     <!-- ESP Script -->
-    <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/esp/test-0.22.js" data-encrypted-signal-source-id="pubmatic"></script>
+    <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/esp/test-0.23.js" data-encrypted-signal-source-id="pubmatic"></script>
     <script async src="//www.googletagservices.com/tag/js/gpt.js"></script>
     <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/prebid/prebid4.30.0.js"></script>
 
@@ -104,15 +104,12 @@
                     pbjs.setTargetingForGPTAsync();
                     // ESP: register signal function with googletag.
                     googletag.encryptedSignalProviders=googletag.encryptedSignalProviders || [];
-                    var mode = 1; // 1= eids from Prebid , 2= eids from Identity Hub
-                    var signalSources=["pubmatic","id5-sync.com","pubcid.org","adserver.org","criteo.com"]
-                    signalSources.forEach(function(source){ 
-                        console.log("Registering signal provider: "+source);
-                        googletag.encryptedSignalProviders.push({
-                            id: source,
-                            collectorFunction: function(){ return fetchAsyncSignals(mode,source); }
-                        });
-                    });
+                    googletag.encryptedSignalProviders = [];
+                    var signalSources = ["pubcid.org", "criteo.com"]; // Select the signal sources you want to pass
+                    var encrypt = false;
+                    var mode = 1; // Mode 1=Prebid , 2=Identity Hub
+                    esp.registerSignalSources(googletag, signalSources, mode, encrypt); 
+
                     googletag.pubads().refresh();
                 });
             });
