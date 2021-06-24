@@ -22,9 +22,6 @@
     </script>
     <!-- End IE Compatibility Script for ESP (Promise) -->
 
-    <!-- ESP Script -->
-    <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/esp/test-0.23.js" data-encrypted-signal-source-id="pubmatic"></script>
-
     <!-- Identity Hub Script begins here -->
 
     <script type="text/javascript">
@@ -61,7 +58,7 @@
     <script type="text/javascript">
         (function() {
             var purl = window.location.href;
-            var url = '//ads.pubmatic.com/AdServer/js/pwt/5890/1804';
+            var url = '//ads.pubmatic.com/AdServer/js/pwt/5890/1804/12';
             var profileVersionId = '';
             if (purl.indexOf('pwtv=') > 0) {
                 var regexp = /pwtv=(.*?)(&|$)/g;
@@ -155,12 +152,13 @@
             googletag.cmd.push(function() {
                 pbjs.que.push(function() {
                     pbjs.setTargetingForGPTAsync();
-                    googletag.encryptedSignalProviders = [];
-                    var signalSources = ["pubcid.org", "criteo.com"]; // Select the signal sources you want to pass
-                    var encrypt = false;
-                    var mode = 2; // Mode 1=Prebid , 2=Identity Hub
-                    esp.registerSignalSources(googletag, signalSources, mode, encrypt); 
-
+                    // ESP: register signal function with googletag
+                    var mode = 2; // 1= eids from Prebid , 2= eids from Identity Hub
+                    var signalSources=["pubmatic","id5-sync.com","pubcid.org","adserver.org","criteo.com"];
+                    var enc=false; // Encrypt IDs
+                    if(typeof esp !=undefined && typeof esp.registerSignalSources === "function"){
+                      esp.registerSignalSources(googletag,signalSources,mode,enc)
+                    }
                     googletag.pubads().refresh();
                 });
             });
@@ -172,12 +170,12 @@
         }, FAILSAFE_TIMEOUT);
 
         googletag.cmd.push(function() {
-            googletag.defineSlot('/19968336/header-bid-tag-0', div_1_sizes, 'div-1').addService(googletag.pubads());
+            googletag.defineSlot('/18190176/AdThrive_Content_3/58adff0b42b971433a846d52', div_1_sizes, 'div-1').addService(googletag.pubads());
             googletag.pubads().enableSingleRequest();
             googletag.enableServices();
         });
         googletag.cmd.push(function() {
-            googletag.defineSlot('/19968336/header-bid-tag-1', div_2_sizes, 'div-2').addService(googletag.pubads());
+            googletag.defineSlot('/18190176/AdThrive_Content_3/58adff0b42b971433a846d52', div_2_sizes, 'div-2').addService(googletag.pubads());
             googletag.pubads().enableSingleRequest();
             googletag.enableServices();
         });
@@ -186,7 +184,7 @@
 </head>
 
 <body>
-    <h2>Identity Hub with ESP eids Passthrough</h2>
+    <h2>Identity Hub with ESP</h2>
     <h5>Div-1</h5>
     <div id='div-1'>
         <script type='text/javascript'>
