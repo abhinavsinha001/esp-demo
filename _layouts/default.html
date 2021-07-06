@@ -26,7 +26,7 @@
       
       <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
       <!-- ESP Script -->
-      <script async src="https://ads.pubmatic.com/AdServer/js/identity/eids-esp-1.1.min.js"  data-encrypted-signal-source-id="pubmatic"></script>
+      <script async src="https://ads.pubmatic.com/AdServer/js/identity/eids-esp-1.0.min.js"  data-encrypted-signal-source-id="pubmatic"></script>
      
       <script type="text/javascript">        
             var div_1_sizes = [
@@ -44,7 +44,7 @@
             googletag.cmd.push(function() {
 		    googletag.encryptedSignalProviders.push({
 		    id: 'pubmatic',
-		    collectorFunction: esp.fetchAsyncSignals
+		    collectorFunction: fetchAsyncSignals
 		});
             });
 
