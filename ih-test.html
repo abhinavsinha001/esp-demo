@@ -162,8 +162,8 @@
                     if(typeof esp !=undefined && typeof esp.registerSignalSources === "function"){
                       console.log(navigator.vendor);
                       console.log(navigator.userAgent);
-                      console.log("is Chrome: "+navigator.is.chrome());
-                      console.log("is iOS: "+navigator.is.ios());
+                      console.log("is Chrome: "+esp.is.chrome());
+                      console.log("is iOS: "+esp.is.ios());
                       if(esp.is.not.chrome() || esp.is.ios()){ // Run on non Chrome browser exxept on iOS
 
                         esp.registerSignalSources(googletag,signalSources,mode,enc);
