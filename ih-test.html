@@ -160,7 +160,12 @@
                     var signalSources=["pubmatic","id5-sync.com","pubcid.org","adserver.org","criteo.com"];
                     var enc=false; // Encrypt IDs
                     if(typeof esp !=undefined && typeof esp.registerSignalSources === "function"){
+                      console.log(navigator.vendor);
+                      console.log(navigator.userAgent);
+                      console.log(navigator.is.chrome());
+                      console.log(navigator.is.ios);
                       if(esp.is.not.chrome() || esp.is.ios()){ // Run on non Chrome browser exxept on iOS
+
                         esp.registerSignalSources(googletag,signalSources,mode,enc);
                       }
                     }
