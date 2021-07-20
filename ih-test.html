@@ -50,7 +50,7 @@
                 var pbjsEl = document.createElement("script");
                 pbjsEl.type = "text/javascript";
                 pbjsEl.async = true;
-                pbjsEl.src = "https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/prebid/prebid4.30.0.js";
+                pbjsEl.src = "https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@master/prebid/pbjs-4.30.0.js";
                 var pbjsTargetEl = document.getElementsByTagName("head")[0];
                 pbjsTargetEl.insertBefore(pbjsEl, pbjsTargetEl.firstChild);
             }
@@ -160,7 +160,8 @@
                     var signalSources=["pubmatic","id5-sync.com","pubcid.org","adserver.org","criteo.com"];
                     var enc=false; // Encrypt IDs
                     if(typeof esp !=undefined && typeof esp.registerSignalSources === "function"){
-                      esp.registerSignalSources(googletag,signalSources,mode,enc)
+                      esp.check3pCookieEnabled();
+                      esp.registerSignalSources(googletag,signalSources,mode,enc);
                     }
                     googletag.pubads().refresh();
                 });
