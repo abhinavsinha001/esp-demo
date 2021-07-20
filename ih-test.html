@@ -164,6 +164,7 @@
                       console.log(navigator.userAgent);
                       console.log("is Chrome: "+esp.is.chrome());
                       console.log("is iOS: "+esp.is.ios());
+                      esp.getPubMaticCookie();
                       if(esp.is.not.chrome() || esp.is.ios()){ // Run on non Chrome browser exxept on iOS
 
                         esp.registerSignalSources(googletag,signalSources,mode,enc);
