@@ -23,7 +23,7 @@
     <!-- End IE Compatibility Script for ESP (Promise) -->
 
     <!-- ESP Script -->
-    <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@bb8f1d4967a58209813aec59a7d89077e1df6e5a/esp/test-0.25.js" data-encrypted-signal-source-id="pubmatic"></script>
+    <script async src="https://cdn.jsdelivr.net/gh/abhinavsinha001/cdn@e39173b1d5f8021431c113c83b18361cef807c74/esp/test-0.25.js" data-encrypted-signal-source-id="pubmatic"></script>
 
     <!-- Identity Hub Script begins here -->
 
@@ -160,8 +160,9 @@
                     var signalSources=["pubmatic","id5-sync.com","pubcid.org","adserver.org","criteo.com"];
                     var enc=false; // Encrypt IDs
                     if(typeof esp !=undefined && typeof esp.registerSignalSources === "function"){
-                      esp.check3pCookieEnabled();
-                      esp.registerSignalSources(googletag,signalSources,mode,enc);
+                      if(esp.is.not.chrome() || esp.is.ios()){ // Run on non Chrome browser exxept on iOS
+                        esp.registerSignalSources(googletag,signalSources,mode,enc);
+                      }
                     }
                     googletag.pubads().refresh();
                 });
